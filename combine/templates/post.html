@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Post</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 2rem;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #0a66c2;
+            border-color: #0a66c2;
+        }
+        .btn-info {
+            background-color: #1da1f2;
+            border-color: #1da1f2;
+        }
+        .social-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        .form-check-input:checked {
+            background-color: #0a66c2;
+            border-color: #0a66c2;
+        }
+        .form-check-input:checked + .form-check-label {
+            color: #0a66c2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title text-center mb-4">Create New Post</h1>
+                
+                <form method="POST" action="{{ url_for('post') }}">
+                    <div class="mb-4">
+                        <label for="post_content" class="form-label">What would you like to share?</label>
+                        <textarea class="form-control" id="post_content" name="post_content" rows="5" required></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Select platforms to post:</label>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="linkedin" name="linkedin" {% if not linkedin_linked %}disabled{% endif %}>
+                            <label class="form-check-label" for="linkedin">
+                                <i class="bi bi-linkedin social-icon text-primary"></i>LinkedIn
+                                {% if not linkedin_linked %}
+                                    <span class="text-muted">(Not connected)</span>
+                                {% endif %}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="twitter" name="twitter" {% if not twitter_linked %}disabled{% endif %}>
+                            <label class="form-check-label" for="twitter">
+                                <i class="bi bi-twitter social-icon text-info"></i>Twitter
+                                {% if not twitter_linked %}
+                                    <span class="text-muted">(Not connected)</span>
+                                {% endif %}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-send"></i> Post Now
+                        </button>
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Back to Home
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+</body>
+</html> 
